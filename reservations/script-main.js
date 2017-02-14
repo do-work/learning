@@ -1,7 +1,29 @@
 
 $(function(){
 
-    //jQuery for both jQuery UI datepicker's
+    //teleport API hook for search by city-IN PROGRESS
+    $('#location').autocomplete({
+        source: function(request, response){
+            $.ajax({
+                url: 'https://api.teleport.org/api/cities/?search=',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    term: request.term
+                },
+                success: function (data) {
+                    response(data._embedded);
+                    console.log(data._embedded)
+                }
+            });
+        },
+        minLength: 4,
+        select: function(event, ui){
+        }
+    });
+
+
+    //jQuery UI datepicker's
     $(".checkIn").datepicker({
         minDate: 0,
     //adjusts checkout time once checkIn time is selected
@@ -13,37 +35,45 @@ $(function(){
         });
     });
 
-    //general 1-9 loop for various buttons. pass in class name
-    function numLoop(className, loopValue){
+    //select options html builder for numbers only
+    function buildOptionsHtmlBlock(loopValue){
         var boxNum = '';
         for(i=1; i<=loopValue; i++){
             boxNum += "<option val='" + i + "'>" + i + "</option>";
-            $('.'+className).html(boxNum);
         }
-    }
-    //roomInfo html template that gets appended upon roomQty selection
-    function appendHtml(){
-        var roomHtml = "<ul class='list-unstyled list-inline'><li id='listRoomNum'>Room</li>";
-        roomHtml += "<li>Adults";
-        roomHtml += "<select class='adultQty'></select></li>";
-        roomHtml += "<li>Children";
-        roomHtml += "<select class='childrenQty'></select></li></ul>";
-        $('.roomInfo').append(roomHtml);
+        return boxNum;
     }
 
-    //room qty loop for each room
+    //roomInfo select boxes html block
+    function buildRoomInfoHtmlBlock(){
+        var roomHtml = "<li class='list-unstyled'>Adults";
+        roomHtml += "<select class='adultQty'></select></li>";
+        roomHtml += "<li class='list-unstyled'>Children";
+        roomHtml += "<select class='childrenQty'></select></li>";
+        return roomHtml;
+    }
+
+    //room number html block
+    function buildRoomNumBlock(i){
+        var listRoomVal = "<ul class='list-inline'></ul><li class='list-unstyled'>Room " + i + "</li>";
+        return listRoomVal;
+    }
+
+    //populate the room qty select box passing in value
+    $('.roomQty').append(buildOptionsHtmlBlock(9));
+
+    //save selected room qty
     $('.roomQty').on('click ', function(){
+        $('.roomInfo').empty();
         var roomQtyNum = $('.roomQty').val();
 
-        for(i=0; i<roomQtyNum; i++){
-            appendHtml();
+        //loops and appends room info for amount of rooms selected
+        for(i=1; i<=roomQtyNum; i++){
+            $('.roomInfo').append(buildRoomNumBlock(i),
+                buildRoomInfoHtmlBlock() );
         }
-        numLoop("adultQty", 9);
-        numLoop("childrenQty", 9);
+        $('.adultQty, .childrenQty' ).append(buildOptionsHtmlBlock(9));
     });
-
-    numLoop("roomQty", 9);
-
 });
 
 

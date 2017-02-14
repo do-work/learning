@@ -2,15 +2,3 @@
     margin-top: 15px;
 }
 
-
-.roomInfo > li {
-    padding: 0, 50px;
-}
-
-.adultQty, .childrenQty {
-    margin: 20px;
-}
-
-#listRoomNum {
-    margin-right: 40px;
-}
