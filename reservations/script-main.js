@@ -1,9 +1,8 @@
-
-$(function(){
+$(function () {
 
     //teleport API hook for search by city-IN PROGRESS
     $('#location').autocomplete({
-        source: function(request, response){
+        source: function (request, response) {
             $.ajax({
                 url: 'https://api.teleport.org/api/cities/?search=',
                 type: 'GET',
@@ -18,7 +17,7 @@ $(function(){
             });
         },
         minLength: 4,
-        select: function(event, ui){
+        select: function (event, ui) {
         }
     });
 
@@ -26,26 +25,26 @@ $(function(){
     //jQuery UI datepicker's
     $(".checkIn").datepicker({
         minDate: 0,
-    //adjusts checkout time once checkIn time is selected
-    }).on("change", function(){
+        //adjusts checkout time once checkIn time is selected
+    }).on("change", function () {
         var checkOutMinDate = $(".checkIn").datepicker('getDate');
-        checkOutMinDate.setDate(checkOutMinDate.getDate()+1);
+        checkOutMinDate.setDate(checkOutMinDate.getDate() + 1);
         $(".checkOut").datepicker({
             minDate: checkOutMinDate
         });
     });
 
     //select options html builder for numbers only
-    function buildOptionsHtmlBlock(loopValue){
+    function buildOptionsHtmlBlock(loopValue) {
         var boxNum = '';
-        for(i=1; i<=loopValue; i++){
+        for (i = 1; i <= loopValue; i++) {
             boxNum += "<option val='" + i + "'>" + i + "</option>";
         }
         return boxNum;
     }
 
     //roomInfo select boxes html block
-    function buildRoomInfoHtmlBlock(){
+    function buildRoomInfoHtmlBlock() {
         var roomHtml = "<li class='list-unstyled'>Adults";
         roomHtml += "<select class='adultQty'></select></li>";
         roomHtml += "<li class='list-unstyled'>Children";
@@ -54,7 +53,7 @@ $(function(){
     }
 
     //room number html block
-    function buildRoomNumBlock(i){
+    function buildRoomNumBlock(i) {
         var listRoomVal = "<ul class='list-inline'></ul><li class='list-unstyled'>Room " + i + "</li>";
         return listRoomVal;
     }
@@ -63,16 +62,16 @@ $(function(){
     $('.roomQty').append(buildOptionsHtmlBlock(9));
 
     //save selected room qty
-    $('.roomQty').on('click ', function(){
+    $('.roomQty').on('click ', function () {
         $('.roomInfo').empty();
         var roomQtyNum = $('.roomQty').val();
 
         //loops and appends room info for amount of rooms selected
-        for(i=1; i<=roomQtyNum; i++){
+        for (i = 1; i <= roomQtyNum; i++) {
             $('.roomInfo').append(buildRoomNumBlock(i),
-                buildRoomInfoHtmlBlock() );
+                buildRoomInfoHtmlBlock());
         }
-        $('.adultQty, .childrenQty' ).append(buildOptionsHtmlBlock(9));
+        $('.adultQty, .childrenQty').append(buildOptionsHtmlBlock(9));
     });
 });
 
