@@ -9,7 +9,7 @@
             text-align: center;
         }
     </style>
-    <script src="/treehouse/js/quiz.js"></script>
+<!--    <script src="/treehouse/js/quiz.js"></script>-->
 </head>
 <body>
 

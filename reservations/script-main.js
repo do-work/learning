@@ -7,10 +7,13 @@ $(function () {
                 url: 'https://api.teleport.org/api/cities/?search=',
                 type: 'GET',
                 dataType: 'json',
-                data: {
-                    term: request.term
-                },
+                data: request.term,
                 success: function (data) {
+                    var results = [];
+                    $.each(data._embedded['city:search-results'], function(index, value){
+
+                    });
+                    results.push();
                     response(data._embedded);
                     console.log(data._embedded)
                 }
