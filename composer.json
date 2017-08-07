@@ -1,0 +1,10 @@
+{
+    "name": "root/learning.dev",
+    "authors": [
+        {
+            "name": "David Olson",
+            "email": "mugency@gmail.com"
+        }
+    ],
+    "require": {}
+}
