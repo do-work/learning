@@ -1,24 +1,35 @@
-<!DOCTYPE html>
-<html lang='en'>
+<?php
+
+$greeting = 'Hello, here is a list of our animals:';
+
+$animals = [
+    'Amdi',
+    'Winkster',
+    'Fuzz',
+    'Ellie',
+    'Xander',
+    'Chubbs'
+
+];
+
+$task = [
+    'title' => 'do laundry',
+    'due' => 'sunday',
+    'assigned_to' => 'David',
+    'completed' => false
+];
+
+?>
+<html>
 <head>
     <title>Testing 1,2,3</title>
-    <style>
-        h1 {
-            background: #e3e3e3;
-            padding: 1em;
-            text-align: center;
-        }
-    </style>
-<!--    <script src="/treehouse/js/quiz.js"></script>-->
+    <link rel="stylesheet" href="default.css">
 </head>
 <body>
 
-<div id="test">
-
-</div>
 
 <h1>
-    <?= $greeting; ?>
+    <?php echo $greeting; ?>
 </h1>
 <ul>
     <?php foreach ($animals as $name) : ?>
@@ -53,7 +64,11 @@
 
 <h1>Are you old enough to have a drink?</h1>
 <?php
-agecheck(22);
+
+use \Laracasts\TestFunctions;
+
+$test = new TestFunctions();
+$test->agecheck(22);
 ?>
 
 </body>
