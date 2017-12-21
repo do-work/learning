@@ -83,16 +83,15 @@ new __WEBPACK_IMPORTED_MODULE_0__TaskCollection__["a" /* default */]([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class TaskCollection {
+var TaskCollection = function TaskCollection(tasks){
+    if ( tasks === void 0 ) tasks = [];
 
-    constructor(tasks = []){
-        this.tasks = tasks;
-    }
+    this.tasks = tasks;
+};
 
-    dump() {
-        console.log(this.tasks);
-    }
-}
+TaskCollection.prototype.dump = function dump () {
+    console.log(this.tasks);
+};
 
 /* harmony default export */ __webpack_exports__["a"] = (TaskCollection);
 

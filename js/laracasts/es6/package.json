@@ -7,10 +7,12 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "buble-loader": "^0.4.1",
     "webpack": "^3.8.1"
   },
   "scripts": {
-    "build": "babel src -d output"
+    "build": "webpack",
+    "build-babel": "babel src -d output"
   },
   "keywords": [],
   "author": "",
