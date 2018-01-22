@@ -23,7 +23,7 @@ $task = [
 <html>
 <head>
     <title>Testing 1,2,3</title>
-    <link rel="stylesheet" href="default.css">
+    <link rel="stylesheet" type="text/css" href="view/default.css">
 </head>
 <body>
 
