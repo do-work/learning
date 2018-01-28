@@ -1,21 +1,8 @@
 <?php
 
-$animals = [
-    'Admi',
-    'Chubbs',
-    'Winks',
-    'Moz'
-];
+$query = require 'bootstrap.php';
 
-$animals[] = 'Dobie';
-
-$task = [
-    'title' => 'clean house',
-    'due' => 'wednesday',
-    'assigned_to' => 'david',
-    'completed' => false
-
-];
-
+$tasks = $query->selectAll('todos', 'Task');
+//$animals = $query->selectAll('animals');
 
 require 'view/index2.view.php';

@@ -13,7 +13,7 @@
 
 <ul>
     <?php foreach ($animals as $name) : ?>
-        <li><?= $name; ?></li>
+        <li><?= $name->name; ?></li>
     <?php endforeach; ?>
 
 </ul>
@@ -25,11 +25,39 @@
 </header>
 
 <ul>
-    <?php foreach ($task as $task => $val) : ?>
-        <li><strong><?= $task; ?></strong> <?= $val; ?></li>
+    <?php foreach ($tasks as $task) : ?>
+        <li>
+            <?php if ($task->completed) : ?>
+                <strike> <?= $task->description; ?> </strike>
+            <?php else: ?>
+                <?= $task->description; ?>
+            <?php endif; ?>
+        </li>
     <?php endforeach; ?>
-
 </ul>
+
+<!--<ul>-->
+<!--    <li>-->
+<!--        <strong>Name: </strong> --><? //= $task['title']; ?>
+<!--    </li>-->
+<!---->
+<!--    <li>-->
+<!--        <strong>Due Date: </strong> --><? //= $task['due']; ?>
+<!--    </li>-->
+<!---->
+<!--    <li>-->
+<!--        <strong>Person Responsible: </strong> --><? //= $task['assigned_to']; ?>
+<!--    </li>-->
+<!---->
+<!--    <li>-->
+<!--        <strong>Status: </strong>-->
+<!--        --><?php //if ($task['completed']) : ?>
+<!--            <span class="icon">&#9989;</span>-->
+<!--        --><?php //else : ?>
+<!--            <span class="icon">Incomplete</span>-->
+<!--        --><?php //endif ?>
+<!--    </li>-->
+<!--</ul>-->
 
 </body>
 </html>
